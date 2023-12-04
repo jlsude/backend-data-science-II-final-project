@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from Algo_Models.LR_model.LR_prelim import LRModel_Preliminary
 from Algo_Models.LR_model.LR_more import LR_more
 from Algo_Models.LR_model.LR_less import LR_less
@@ -12,6 +13,7 @@ from Algo_Models.SVM_model.SVM_more import SVM_more
 from Algo_Models.SVM_model.SVM_less import SVM_less
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
