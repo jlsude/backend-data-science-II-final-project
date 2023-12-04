@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from Algo_Models.LR_model.LR_prelim import LRModel_Preliminary
 from Algo_Models.LR_model.LR_more import LR_more
@@ -11,6 +11,10 @@ from Algo_Models.KNN_model.KNN_less import KNN_less
 from Algo_Models.SVM_model.SVM_prelim import SVM_preliminary
 from Algo_Models.SVM_model.SVM_more import SVM_more
 from Algo_Models.SVM_model.SVM_less import SVM_less
+
+from Algo_Models.DataViz.SVM_more_dataviz import SVM_more_dataviz
+from Algo_Models.DataViz.SVM_less_dataviz import SVM_less_dataviz
+
 
 app = Flask(__name__)
 CORS(app)
@@ -175,5 +179,18 @@ def less_35_prediction():
         }
         
     })
+
+@app.route('/dataviz_svm_more', methods=['GET'])
+def dataviz_more():
+    img_path_more = SVM_more_dataviz()
+
+    return send_file(img_path_more, mimetype='image/png', as_attachment=True)
+
+@app.route('/dataviz_svm_less', methods=['GET'])
+def dataviz_less():
+    img_path_less = SVM_less_dataviz()
+
+    return send_file(img_path_less, mimetype='image/png', as_attachment=True)
+
 if __name__ == '__main__':
     app.run(debug=True)
