@@ -27,8 +27,8 @@ def SVM_less_dataviz():
     title_namesl= SVM_less.columns
     all_comb_less = list(combinations(range(SVM_x_less.shape[1]), 2))
     svm = SVC(kernel='linear', C=1.0)
-    fig, axs = plt.subplots(5, 7, figsize=(20, 20))
-    fig.subplots_adjust(hspace=1, wspace=1)
+    fig, axs = plt.subplots(7, 7, figsize=(25, 25))
+    fig.subplots_adjust(hspace=0.25, wspace=0.4)
     axs = axs.flatten()
 
     for i, (feature_1_less, feature_2_less) in enumerate(all_comb_less):

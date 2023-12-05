@@ -29,7 +29,7 @@ def SVM_more_dataviz():
     svm = SVC(kernel='linear', C=1.0)
 
     fig, axs = plt.subplots(7, 7, figsize=(25, 25))
-    fig.subplots_adjust(hspace=1, wspace=1)
+    fig.subplots_adjust(hspace=0.25, wspace=0.4)
     axs = axs.flatten()
 
     for i, (feature_1, feature_2) in enumerate(all_comb_more):
