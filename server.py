@@ -194,5 +194,6 @@ def dataviz_less():
 
     return send_file(img_path_less, mimetype='image/png', as_attachment=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# commented out for production
+# if __name__ == '__main__':
+#     app.run(debug=True)
