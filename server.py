@@ -17,7 +17,7 @@ from Algo_Models.DataViz.SVM_less_dataviz import SVM_less_dataviz
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/')
 def index():
@@ -195,5 +195,5 @@ def dataviz_less():
     return send_file(img_path_less, mimetype='image/png', as_attachment=True)
 
 # commented out for production
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
