@@ -21,9 +21,11 @@ CORS(app)
 
 @app.route('/')
 def index():
-    print("Data Science API is up and running!")
     return "Data Science API is up and running!"
 
+@app.route('/activate', methods=['GET'])
+def activate():
+    return "API is activated!"
 
 @app.route('/preliminary', methods=['POST'])
 def preliminary_prediction():
