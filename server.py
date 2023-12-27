@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_file
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from Algo_Models.LR_model.LR_prelim import LRModel_Preliminary
 from Algo_Models.LR_model.LR_more import LR_more
 from Algo_Models.LR_model.LR_less import LR_less
@@ -17,7 +17,7 @@ from Algo_Models.DataViz.SVM_less_dataviz import SVM_less_dataviz
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:3000", "https://heart-attack-prediction-analysis.web.app"]}}, supports_credentials=True)
 
 @app.route('/')
 def index():
@@ -183,12 +183,14 @@ def less_35_prediction():
     })
 
 @app.route('/dataviz_svm_more', methods=['GET'])
+@cross_origin(origin=['http://localhost:3000', 'https://heart-attack-prediction-analysis.web.app'], headers=['Content-Type', 'Authorization'])
 def dataviz_more():
     img_path_more = SVM_more_dataviz()
 
     return send_file(img_path_more, mimetype='image/png', as_attachment=True)
 
 @app.route('/dataviz_svm_less', methods=['GET'])
+@cross_origin(origin=['http://localhost:3000', 'https://heart-attack-prediction-analysis.web.app'], headers=['Content-Type', 'Authorization'])
 def dataviz_less():
     img_path_less = SVM_less_dataviz()
 
