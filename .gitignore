@@ -1,7 +1,7 @@
 # Ignore everything in the DataViz folder
 /DataViz/*
 # But do not ignore the DataViz folder itself
-!/DataViz/
+!/DataViz/dataviz-dumpfile.txt
 
 /__pycache__
 Algo_Models/__pycache__/
