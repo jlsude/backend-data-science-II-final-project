@@ -17,7 +17,7 @@ from Algo_Models.DataViz.SVM_less_dataviz import SVM_less_dataviz
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["http://localhost:3000", "https://heart-attack-prediction-analysis.web.app"]}}, supports_credentials=True)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/')
 def index():
@@ -183,19 +183,19 @@ def less_35_prediction():
     })
 
 @app.route('/dataviz_svm_more', methods=['GET'])
-@cross_origin(origin=['http://localhost:3000', 'https://heart-attack-prediction-analysis.web.app'], headers=['Content-Type', 'Authorization'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def dataviz_more():
     img_path_more = SVM_more_dataviz()
 
     return send_file(img_path_more, mimetype='image/png', as_attachment=True)
 
 @app.route('/dataviz_svm_less', methods=['GET'])
-@cross_origin(origin=['http://localhost:3000', 'https://heart-attack-prediction-analysis.web.app'], headers=['Content-Type', 'Authorization'])
+@cross_origin(origin="*", headers=['Content-Type', 'Authorization'])
 def dataviz_less():
     img_path_less = SVM_less_dataviz()
 
     return send_file(img_path_less, mimetype='image/png', as_attachment=True)
 
 # commented out for production
-# if __name__ == '__main__':
-#     app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
