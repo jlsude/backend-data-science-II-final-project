@@ -24,6 +24,8 @@ scaler = StandardScaler()
 SVM_x_less_standardized = scaler.fit_transform(SVM_x_less)
 
 def SVM_less_dataviz():
+    clean_data_viz_folder()
+    
     title_namesl= SVM_less.columns
     all_comb_less = list(combinations(range(SVM_x_less.shape[1]), 2))
     svm = SVC(kernel='linear', C=1.0)
@@ -70,3 +72,18 @@ def SVM_less_dataviz():
     plt.close()
 
     return img_path_less
+
+def clean_data_viz_folder():
+    folder_path = 'DataViz'
+    files_to_exclude = ['dataviz-dumpfile.txt']  # Add other file names to exclude as needed
+
+    if os.path.exists(folder_path):
+        for file_name in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, file_name)
+            try:
+                if os.path.isfile(file_path) and file_name not in files_to_exclude:
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    os.rmdir(file_path)
+            except Exception as e:
+                print(f"Error cleaning DataViz folder: {e}")
